@@ -1,0 +1,24 @@
+void store_nodes(Node* root,vector<Node*> &nodes){
+    if(root==NULL)
+      return;
+     store_nodes(root->left,nodes);
+     nodes.push_back(root);
+     store_nodes(root->right,nodes);
+}
+Node* construct_Tree(vector<Node*>&nodes,int start,int end){
+    if(start>end)
+    return NULL;
+    int mid=(start+end)/2;
+    Node* root=nodes[mid];
+    root->left=construct_Tree(nodes,start,mid-1);
+    root->right=construct_Tree(nodes,mid+1,end);
+    return root;
+}
+
+Node* buildBalancedTree(Node* root)
+{
+vector<Node*>nodes;
+store_nodes(root,nodes);
+int n=nodes.size();
+ return construct_Tree(nodes,0,n-1);
+}
