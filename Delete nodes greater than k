@@ -1,0 +1,18 @@
+Node* buildTree(Node* root,int key)
+{
+    if(root==NULL)
+     return NULL;
+    if(root->data==key){
+      return root->left;
+    }
+    else if(root->data>key)
+      return buildTree(root->left,key);
+    else {
+      root->right=buildTree(root->right,key);
+      return root;
+    }
+}
+Node* deleteNode(Node* root,int key){
+    root=buildTree(root,key);
+    return root;
+}
